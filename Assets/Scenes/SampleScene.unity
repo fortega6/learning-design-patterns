@@ -607,7 +607,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8090b9e88e2f66148bdb70f7f209f62f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _useJoystick: 1
+  _useAI: 1
+  _useJoystick: 0
   _joystick: {fileID: 254406918}
   _ship: {fileID: 2074337948}
 --- !u!4 &1459844190

@@ -10,17 +10,17 @@ namespace Ships
         [SerializeField] private Vector2 _horizontalBound;
         [SerializeField] private Vector2 _verticalBound;
         private Transform _myTransform;
-        private Camera _camera;
+        private ICheckLimits _checkLimits;
 
         private void Awake()
         {
-            _camera = Camera.main;
             _myTransform = transform;
         }
 
-        public void Configure(Input input)
+        public void Configure(Input input, ICheckLimits checkLimits)
         {
             _input = input;
+            _checkLimits = checkLimits;
         }
 
         private void Update()
@@ -32,15 +32,7 @@ namespace Ships
         private void Move(Vector2 direction)
         {
             _myTransform.Translate(direction * (_speed * Time.deltaTime));
-            ClampFinalPosition();
-        }
-
-        private void ClampFinalPosition()
-        {
-            var viewportPoint = _camera.WorldToViewportPoint(_myTransform.position);
-            viewportPoint.x = Mathf.Clamp(viewportPoint.x, _horizontalBound.x, _horizontalBound.y);
-            viewportPoint.y = Mathf.Clamp(viewportPoint.y, _verticalBound.x, _verticalBound.y);
-            _myTransform.position = _camera.ViewportToWorldPoint(viewportPoint);
+            _checkLimits.ClampFinalPosition();
         }
 
         private Vector2 GetDirection()
