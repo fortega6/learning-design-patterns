@@ -6,5 +6,6 @@ namespace Ships
     public interface Input
     {
         Vector2 GetDirection();
+        bool IsFireActionPressed();
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Input;
+using System;
 using UnityEngine;
 
 namespace Ships
@@ -8,6 +9,7 @@ namespace Ships
        [SerializeField] private bool _useAI;
        [SerializeField] private bool _useJoystick;
        [SerializeField] private Joystick _joystick;
+       [SerializeField] private JoyButton _joyButton;
        [SerializeField] private Ship _ship;
 
        private void Awake()
@@ -33,10 +35,11 @@ namespace Ships
             }
             if (_useJoystick)
             {
-                return new JoystickInputAdapter(_joystick);
+                return new JoystickInputAdapter(_joystick, _joyButton);
             }
 
             Destroy(_joystick.gameObject);
+            Destroy(_joyButton.gameObject);
             return new UnityInputAdapter();
        }
    }

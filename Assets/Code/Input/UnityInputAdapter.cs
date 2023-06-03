@@ -10,5 +10,10 @@ namespace Ships
             var vertical = UnityEngine.Input.GetAxis("Vertical");
             return new Vector2(horizontal, vertical);
         }
+
+        public bool IsFireActionPressed()
+        {
+            return UnityEngine.Input.GetButton("Fire1");
+        }
     }
 }
