@@ -134,38 +134,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship
       objectReference: {fileID: 0}
-    - target: {fileID: 3982472195643883701, guid: 03df152f1408e412790a6f82d5833407, type: 3}
-      propertyPath: _joystick
-      value: 
-      objectReference: {fileID: 254406918}
-    - target: {fileID: 3982472195643883701, guid: 03df152f1408e412790a6f82d5833407, type: 3}
-      propertyPath: _verticalBound.x
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 3982472195643883701, guid: 03df152f1408e412790a6f82d5833407, type: 3}
-      propertyPath: _verticalBound.y
-      value: 0.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 3982472195643883701, guid: 03df152f1408e412790a6f82d5833407, type: 3}
-      propertyPath: _projectilePrefab
-      value: 
-      objectReference: {fileID: 1286005151461825912, guid: de61c312c4d5ac24185e262a6184e2cb, type: 3}
-    - target: {fileID: 3982472195643883701, guid: 03df152f1408e412790a6f82d5833407, type: 3}
-      propertyPath: _fireRateInSeconds
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3982472195643883701, guid: 03df152f1408e412790a6f82d5833407, type: 3}
-      propertyPath: _horizontalBound.x
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 3982472195643883701, guid: 03df152f1408e412790a6f82d5833407, type: 3}
-      propertyPath: _horizontalBound.y
-      value: 0.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 3982472195643883701, guid: 03df152f1408e412790a6f82d5833407, type: 3}
-      propertyPath: _projectileSpawnPosition
-      value: 
-      objectReference: {fileID: 2080331962}
     - target: {fileID: 3982472195643883703, guid: 03df152f1408e412790a6f82d5833407, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -771,8 +739,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8970a72faada8462386281884829c443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &2080331962 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2109334766672782764, guid: 03df152f1408e412790a6f82d5833407, type: 3}
-  m_PrefabInstance: {fileID: 186499654}
-  m_PrefabAsset: {fileID: 0}

@@ -4,10 +4,10 @@ namespace Ships
 {
     class AIInputAdapter : Input
     {
-        private readonly Ship _ship;
+        private readonly ShipMediator _ship;
         private int _currentDirectionX;
 
-        public AIInputAdapter(Ship ship)
+        public AIInputAdapter(ShipMediator ship)
         {
             _ship = ship;
             _currentDirectionX = 1;
