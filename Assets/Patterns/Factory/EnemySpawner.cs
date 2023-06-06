@@ -6,8 +6,8 @@ namespace Patterns.Factory
 {
     public class EnemySpawner : MonoBehaviour
     {
-        [SerializeField] private string _enemyId1;
-        [SerializeField] private string _enemyId2;
+        [SerializeField] private EnemyId _enemyId1;
+        [SerializeField] private EnemyId _enemyId2;
 
         [SerializeField] private EnemyFactory _enemyFactory;
 
@@ -15,12 +15,12 @@ namespace Patterns.Factory
         {
             if (UnityEngine.Input.GetKeyDown(KeyCode.Q))
             {
-                _enemyFactory.Create(_enemyId1);
+                _enemyFactory.Create(_enemyId1.Value);
             }
 
             if (UnityEngine.Input.GetKeyDown(KeyCode.W))
             {
-                _enemyFactory.Create(_enemyId2);
+                _enemyFactory.Create(_enemyId2.Value);
             }
         }
 
