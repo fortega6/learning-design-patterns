@@ -9,7 +9,13 @@ namespace Patterns.Factory
         [SerializeField] private EnemyId _enemyId1;
         [SerializeField] private EnemyId _enemyId2;
 
-        [SerializeField] private EnemyFactory _enemyFactory;
+        [SerializeField] private EnemiesConfiguration _enemiesConfiguration;
+        private EnemyFactory _enemyFactory;
+
+        private void Awake()
+        {
+            _enemyFactory = new EnemyFactory(Instantiate(_enemiesConfiguration));
+        }
 
         private void Update()
         {
