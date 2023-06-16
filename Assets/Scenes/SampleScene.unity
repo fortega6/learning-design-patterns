@@ -178,6 +178,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4104662173723630091, guid: 03df152f1408e412790a6f82d5833407, type: 3}
+      propertyPath: defaultProjectileId
+      value: 
+      objectReference: {fileID: 11400000, guid: 3256a3935c3052e47a9049e20e47d070, type: 2}
+    - target: {fileID: 4104662173723630091, guid: 03df152f1408e412790a6f82d5833407, type: 3}
+      propertyPath: _projectilesConfiguration
+      value: 
+      objectReference: {fileID: 11400000, guid: a0ffda0d2fab34b418856b1cd2f42b4f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03df152f1408e412790a6f82d5833407, type: 3}
 --- !u!224 &254406917 stripped
