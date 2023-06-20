@@ -9,17 +9,18 @@ namespace Ships.Weapons.Projectiles
         [SerializeField] private Rigidbody2D _rigidbody2D;
         [SerializeField] private float _speed;
 
-
-        private void Start()
+        protected override void DoStart()
         {
             _rigidbody2D.velocity = transform.up * _speed;
-            StartCoroutine(DestroyIn(4));
         }
 
-        private IEnumerator DestroyIn(float seconds)
+        protected override void DoDestroy()
         {
-            yield return new WaitForSeconds(seconds);
-            Destroy(gameObject);
         }
+
+        protected override void DoMove()
+        {
+        }
+
     }
 }
