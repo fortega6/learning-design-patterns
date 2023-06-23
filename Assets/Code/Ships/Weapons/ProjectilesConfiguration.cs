@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Ships.Weapons
 {
+
     [CreateAssetMenu(menuName = "Factory/Create ProjectilesConfiguration", fileName = "ProjectilesConfiguration", order = 0)]
     public class ProjectilesConfiguration : ScriptableObject
     {

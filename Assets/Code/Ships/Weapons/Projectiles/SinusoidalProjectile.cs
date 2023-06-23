@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Ships.Weapons.Projectiles
 {
-    [RequireComponent(typeof(Rigidbody2D))]
     public class SinusoidalProjectile : Projectile
     {
         [SerializeField] private float _speed;

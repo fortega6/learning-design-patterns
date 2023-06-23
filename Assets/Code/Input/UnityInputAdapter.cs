@@ -2,7 +2,7 @@
 
 namespace Ships
 {
-    class UnityInputAdapter : Input
+    class UnityInputAdapter : Input.Input
     {
         public Vector2 GetDirection()
         {

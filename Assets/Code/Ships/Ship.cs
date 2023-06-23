@@ -2,6 +2,6 @@
 {
     public interface Ship
     {
-
+        string Id { get; }
     }
 }

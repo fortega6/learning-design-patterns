@@ -11,17 +11,21 @@ namespace Ships
         [SerializeField] private MovementController _movementController;
         [SerializeField] private WeaponController _weaponController;
 
+        [SerializeField] private ShipId _shipId;
         
         [SerializeField] private Vector2 _horizontalBound;
         [SerializeField] private Vector2 _verticalBound;
+        public string Id => _shipId.Value;
         
-        private Input _input;
+        private Input.Input _input;
 
-        public void Configure(Input input, ICheckLimits checkLimits)
+
+        public void Configure(Input.Input input, CheckLimits.ICheckLimits checkLimits,
+                             Vector2 speed, float fireRate, ProjectileId defaultProjectileId)
         {
             _input = input;
-            _movementController.Configure(this, checkLimits);
-            _weaponController.Configure(this);
+            _movementController.Configure(this, checkLimits, speed);
+            _weaponController.Configure(this, fireRate, defaultProjectileId);
         }
 
         private void Update()

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Ships
 {
-    class JoystickInputAdapter : Input
+    class JoystickInputAdapter : Input.Input
     {
         private readonly Joystick _joystick;
         private readonly JoyButton _joyButton;

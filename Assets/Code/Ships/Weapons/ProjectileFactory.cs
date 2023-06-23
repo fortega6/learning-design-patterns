@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Ships.Weapons
 {
+
     public class ProjectileFactory
     {
         private readonly ProjectilesConfiguration _configuration;

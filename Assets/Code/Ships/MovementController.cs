@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using Ships.CheckLimits;
+using System.Collections;
 using UnityEngine;
 
 namespace Ships
 {
     public class MovementController : MonoBehaviour
     {
-        [SerializeField] private float _speed;
+        private Vector2 _speed;
 
         private Ship _ship;
         private Transform _myTransform;
@@ -17,10 +18,11 @@ namespace Ships
             _myTransform = transform;
         }
 
-        public void Configure(Ship ship, ICheckLimits checkLimits)
+        public void Configure(Ship ship, ICheckLimits checkLimits, Vector2 speed)
         {
             _ship = ship;
             _checkLimits = checkLimits;
+            _speed = speed;
         }
 
         public void Move(Vector2 direction)
