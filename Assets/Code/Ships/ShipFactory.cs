@@ -11,11 +11,12 @@ namespace Ships
             _configuration = configuration;
         }
 
-        public ShipMediator Create(string id, Vector3 position, Quaternion rotation)
+        public ShipBuilder Create(string id)
         {
             var prefab = _configuration.GetShipById(id);
 
-            return GameObject.Instantiate(prefab, position, rotation);
+            return new ShipBuilder()
+                .FromPrebab(prefab);
         }
     }
 }
