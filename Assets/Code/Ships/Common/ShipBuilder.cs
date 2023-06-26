@@ -5,7 +5,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Ships
+namespace Ships.Common
 {
     public class ShipBuilder
     {
@@ -82,11 +82,12 @@ namespace Ships
         public ShipMediator Build()
         {
             var ship = GameObject.Instantiate(_prefab, _position, _rotation);
-            ship.Configure(GetInput(ship),
+            var shipConfiguration = new ShipConfiguration(GetInput(ship),
                             GetCheckLimits(ship),
                             _shipConfiguration.Speed,
                             _shipConfiguration.FireRate,
                             _shipConfiguration.DefaultProjectileId);
+            ship.Configure(shipConfiguration);
             return ship;
         }
 

@@ -1,5 +1,5 @@
+using Ships.Common;
 using Ships.Weapons;
-using System;
 using UnityEngine;
 
 namespace Ships
@@ -20,12 +20,11 @@ namespace Ships
         private Input.Input _input;
 
 
-        public void Configure(Input.Input input, CheckLimits.ICheckLimits checkLimits,
-                             Vector2 speed, float fireRate, ProjectileId defaultProjectileId)
+        public void Configure(ShipConfiguration configuration)
         {
-            _input = input;
-            _movementController.Configure(this, checkLimits, speed);
-            _weaponController.Configure(this, fireRate, defaultProjectileId);
+            _input = configuration.Input;
+            _movementController.Configure(this, configuration.CheckLimits, configuration.Speed);
+            _weaponController.Configure(this, configuration.FireRate, configuration.DefaultProjectileId);
         }
 
         private void Update()
