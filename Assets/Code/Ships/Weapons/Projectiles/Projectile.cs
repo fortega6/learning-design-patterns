@@ -29,8 +29,9 @@ namespace Ships.Weapons.Projectiles
 
         protected abstract void DoMove();
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerEnter2D(Collider2D other)
         {
+            Debug.Log("Projectile collided: " + other.name);
             DestroyProjectile();
         }
 

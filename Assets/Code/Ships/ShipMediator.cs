@@ -41,5 +41,10 @@ namespace Ships
                 _weaponController.TryShoot();
             } 
         }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            Debug.Log("Ship collided: " + other.name);
+        }
     }
 }
