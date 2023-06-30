@@ -103,7 +103,7 @@ namespace Ships.Common
                 case CheckLimitTypes.InitialPosition:
                     return new InitialPositionCheckLimits(ship.transform, 10);
                 case CheckLimitTypes.Viewport:
-                    return new ViewportCheckLimits(ship.transform, Camera.main);
+                    return new ViewportCheckLimits(Camera.main);
                 default:
                     throw new ArgumentOutOfRangeException();
             }
