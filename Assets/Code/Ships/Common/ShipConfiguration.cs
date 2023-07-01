@@ -8,17 +8,24 @@ namespace Ships.Common
     {
         public readonly Input.Input Input;
         public readonly CheckLimits.ICheckLimits CheckLimits;
+
         public readonly Vector2 Speed;
+        public readonly int Health;
         public readonly float FireRate;
         public readonly ProjectileId DefaultProjectileId;
+        public readonly Teams Team;
 
-        public ShipConfiguration(Input.Input input, ICheckLimits checkLimits, Vector2 speed, float fireRate, ProjectileId defaultProjectileId)
+        public ShipConfiguration(Input.Input input, ICheckLimits checkLimits,
+                                    Vector2 speed, int health, float fireRate, 
+                                    ProjectileId defaultProjectileId, Teams team)
         {
             Input = input;
             CheckLimits = checkLimits;
             Speed = speed;
+            Health = health;
             FireRate = fireRate;
             DefaultProjectileId = defaultProjectileId;
+            Team = team;
         }
     }
 }

@@ -31,10 +31,16 @@ namespace Ships.Common
         private Joystick _joystick;
         private JoyButton _joyButton;
         private CheckLimitTypes _checkLimitsType;
+        private Teams _team;
 
         public ShipBuilder FromPrebab(ShipMediator prebab)
         {
             _prefab = prebab;
+            return this;
+        }
+        public ShipBuilder WithTeam(Teams team)
+        {
+            _team = team;
             return this;
         }
         public ShipBuilder WithPosition(Vector3 position)
@@ -83,10 +89,12 @@ namespace Ships.Common
         {
             var ship = GameObject.Instantiate(_prefab, _position, _rotation);
             var shipConfiguration = new ShipConfiguration(GetInput(ship),
-                            GetCheckLimits(ship),
-                            _shipConfiguration.Speed,
-                            _shipConfiguration.FireRate,
-                            _shipConfiguration.DefaultProjectileId);
+                                                          GetCheckLimits(ship),
+                                                          _shipConfiguration.Speed,
+                                                          _shipConfiguration.Health,
+                                                          _shipConfiguration.FireRate,
+                                                          _shipConfiguration.DefaultProjectileId,
+                                                          _team);
             ship.Configure(shipConfiguration);
             return ship;
         }

@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 3982472195643883701}
   - component: {fileID: 5820314431825301186}
   - component: {fileID: 4104662173723630091}
+  - component: {fileID: 3819705733823697835}
   - component: {fileID: 5924217085739117872}
   - component: {fileID: 8643406040256416468}
   m_Layer: 6
@@ -188,6 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementController: {fileID: 5820314431825301186}
   _weaponController: {fileID: 4104662173723630091}
+  _healthController: {fileID: 3819705733823697835}
   _shipId: {fileID: 11400000, guid: e1f376602cb2f4dc1bb9ff90288ee740, type: 2}
   _horizontalBound: {x: 0.03, y: 0.97}
   _verticalBound: {x: 0.03, y: 0.97}
@@ -217,6 +219,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _projectilesConfiguration: {fileID: 11400000, guid: a0ffda0d2fab34b418856b1cd2f42b4f, type: 2}
   _projectileSpawnPosition: {fileID: 2109334766672782764}
+--- !u!114 &3819705733823697835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3982472195643883700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d18d4e6e067a1c6459d38116dd2e4e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &5924217085739117872
 Rigidbody2D:
   serializedVersion: 4

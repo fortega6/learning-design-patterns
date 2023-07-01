@@ -1,4 +1,5 @@
-﻿using Ships.Weapons.Projectiles;
+﻿using Ships.Common;
+using Ships.Weapons.Projectiles;
 using UnityEngine;
 
 namespace Ships.Weapons
@@ -13,11 +14,13 @@ namespace Ships.Weapons
             _configuration = configuration;
         }
 
-        public Projectile Create(string id, Vector3 position, Quaternion rotation)
+        public Projectile Create(string id, Vector3 position, Quaternion rotation, Teams team)
         {
             var prefab = _configuration.GetProjectileById(id);
 
-            return GameObject.Instantiate(prefab, position, rotation);
+            var projectile = Object.Instantiate(prefab, position, rotation);
+            projectile.Configure(team);
+            return projectile;
         }
     }
 }

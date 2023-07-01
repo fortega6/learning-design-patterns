@@ -1,3 +1,4 @@
+using Assets.Code.Ships;
 using Ships.Common;
 using Ships.Weapons;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace Ships
     {
         [SerializeField] private MovementController _movementController;
         [SerializeField] private WeaponController _weaponController;
+        [SerializeField] private HealthController _healthController;
 
         [SerializeField] private ShipId _shipId;
         
@@ -18,13 +20,15 @@ namespace Ships
         public string Id => _shipId.Value;
         
         private Input.Input _input;
-
+        private Teams _team;
 
         public void Configure(ShipConfiguration configuration)
         {
             _input = configuration.Input;
             _movementController.Configure(this, configuration.CheckLimits, configuration.Speed);
-            _weaponController.Configure(this, configuration.FireRate, configuration.DefaultProjectileId);
+            _weaponController.Configure(this, configuration.FireRate, configuration.DefaultProjectileId, configuration.Team);
+            _healthController.Configure(this, configuration.Health, configuration.Team);
+            _team = configuration.Team;
         }
 
         private void Update()
@@ -44,7 +48,22 @@ namespace Ships
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            var damageable = other.GetComponent<Damageable>();
+            if (damageable.Team == _team)
+            {
+                return;
+            }
+
+            damageable.AddDamage(1);
             Debug.Log("Ship collided: " + other.name);
+        }
+
+        public void OnDamageReceived(bool isDeath)
+        {
+            if (isDeath)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

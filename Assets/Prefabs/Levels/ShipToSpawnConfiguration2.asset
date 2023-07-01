@@ -16,3 +16,4 @@ MonoBehaviour:
   _defaultProjectileId: {fileID: 11400000, guid: 3256a3935c3052e47a9049e20e47d070, type: 2}
   _speed: {x: 5, y: 0.5}
   _fireRate: 1
+  _health: 1
