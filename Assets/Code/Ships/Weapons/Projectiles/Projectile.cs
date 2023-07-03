@@ -44,6 +44,7 @@ namespace Ships.Weapons.Projectiles
             {
                 return;
             }
+
             damageable.AddDamage(1);
             Debug.Log("Projectile collided: " + other.name);
         }

@@ -1,6 +1,7 @@
 using Assets.Code.Ships;
 using Ships.Common;
 using Ships.Weapons;
+using UI;
 using UnityEngine;
 
 namespace Ships
@@ -21,6 +22,7 @@ namespace Ships
         
         private Input.Input _input;
         private Teams _team;
+        private int _score;
 
         public void Configure(ShipConfiguration configuration)
         {
@@ -29,6 +31,7 @@ namespace Ships
             _weaponController.Configure(this, configuration.FireRate, configuration.DefaultProjectileId, configuration.Team);
             _healthController.Configure(this, configuration.Health, configuration.Team);
             _team = configuration.Team;
+            _score = configuration.Score;
         }
 
         private void Update()
@@ -62,6 +65,8 @@ namespace Ships
         {
             if (isDeath)
             {
+                var scoreView = FindAnyObjectByType<ScoreView>();
+                scoreView.AddScore(_team, _score);
                 Destroy(gameObject);
             }
         }

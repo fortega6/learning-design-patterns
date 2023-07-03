@@ -22,7 +22,7 @@ namespace Ships.Weapons.Projectiles
         {
             _currentPosition += MyTransform.up * (_speed * Time.deltaTime);
             var horizontalPosition = MyTransform.right * (_amplitude * Mathf.Sin(_currentTime * _frequency));
-            Debug.Log(_currentPosition);
+            //Debug.Log(_currentPosition);
             _rigidbody2D.MovePosition(_currentPosition + horizontalPosition);
             _currentTime += Time.deltaTime;
         }

@@ -13,7 +13,6 @@ namespace Ships
         [SerializeField] private bool _useJoystick;
         [SerializeField] private Joystick _joystick;
         [SerializeField] private JoyButton _joyButton;
-        [SerializeField] private ShipMediator _ship;
 
         [SerializeField] private ShipToSpawnConfiguration _shipConfiguration;
         [SerializeField] private ShipsConfiguration _shipsConfiguration;
