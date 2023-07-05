@@ -6,9 +6,32 @@ namespace UI
 {
     public class ScoreView : MonoBehaviour
     {
-        [SerializeField] TMPro.TextMeshProUGUI _text;
+        public static ScoreView Instance { get; private set; }
+
+        [SerializeField] private TMPro.TextMeshProUGUI _text;
 
         private int _currentScore;
+
+        public int CurrentScore
+        {
+            get => _currentScore;
+            private set
+            {
+                _currentScore = value;
+                _text.SetText(_currentScore.ToString());
+            }
+        }
+
+        private void Awake()
+        {
+            if (Instance != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
+        }
 
         public void Reset()
         {
@@ -22,8 +45,7 @@ namespace UI
                 return;
             }
 
-            _currentScore += scoreToAdd;
-            _text.SetText(_currentScore.ToString());
+            CurrentScore += scoreToAdd;
         }
     }
 }
