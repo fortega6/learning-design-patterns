@@ -9,27 +9,26 @@ namespace UI
 {
     public class GameOverView : MonoBehaviour, EventObserver
     {
-        public static GameOverView Instance { get; private set; }
         [SerializeField] private TextMeshProUGUI _scoreText;
         [SerializeField] private Button _restartButton;
         [SerializeField] private GameFacade _gameFacade;
 
         private void Awake()
         {
-            if (Instance != null)
-            {
-                Destroy(gameObject);
-                return;
-            }
-            Instance = this;
-
             _restartButton.onClick.AddListener(RestartGame);
-            gameObject.SetActive(false);
+        }
 
+        private void Start()
+        {
+            gameObject.SetActive(false);
             EventQueue.Instance.Subscribe(EventIds.ShipDestroyed, this);
             EventQueue.Instance.Subscribe(EventIds.GameOver, this);
         }
-
+        private void OnDestroy()
+        {
+            EventQueue.Instance.Unsubscribe(EventIds.ShipDestroyed, this);
+            EventQueue.Instance.Unsubscribe(EventIds.GameOver, this);
+        }
         public void Process(EventData eventData)
         {
             if (eventData.EventId == EventIds.ShipDestroyed)

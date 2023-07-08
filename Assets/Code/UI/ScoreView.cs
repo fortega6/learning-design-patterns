@@ -33,9 +33,15 @@ namespace UI
 
             Instance = this;
 
+        }
+        private void Start()
+        {
             EventQueue.Instance.Subscribe(EventIds.ShipDestroyed, this);
         }
-
+        private void OnDestroy()
+        {
+            EventQueue.Instance.Unsubscribe(EventIds.ShipDestroyed, this);
+        }
         public void Reset()
         {
             _currentScore = 0;
