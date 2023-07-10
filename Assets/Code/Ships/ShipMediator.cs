@@ -20,7 +20,8 @@ namespace Ships
         [SerializeField] private Vector2 _horizontalBound;
         [SerializeField] private Vector2 _verticalBound;
         public string Id => _shipId.Value;
-        
+
+        private CheckDestroyLimits.CheckDestroyLimits _checkDestroyLimits;
         private Input.Input _input;
         private Teams _team;
         private int _score;
@@ -35,6 +36,7 @@ namespace Ships
         }
         public void Configure(ShipConfiguration configuration)
         {
+            _checkDestroyLimits = configuration.CheckDestroyLimits;
             _input = configuration.Input;
             _movementController.Configure(this, configuration.CheckLimits, configuration.Speed);
             _weaponController.Configure(this, configuration.FireRate, configuration.DefaultProjectileId, configuration.Team);
@@ -43,13 +45,29 @@ namespace Ships
             _score = configuration.Score;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             var direction = _input.GetDirection();
             _movementController.Move(direction);
-            TryShoot();
         }
 
+        private void Update()
+        {
+            TryShoot();
+            CheckDestroyLimits();
+        }
+        private void CheckDestroyLimits()
+        {
+            if (_checkDestroyLimits.IsInsideTheLimits(transform.position))
+            {
+                return;
+            }
+
+            Destroy(gameObject);
+
+            var shipDestroyedEventData = new ShipDestroyedEvenData(0, _team, GetInstanceID());
+            EventQueue.Instance.EnqueueEvent(shipDestroyedEventData);
+        }
         private void TryShoot()
         {
             if (_input.IsFireActionPressed())

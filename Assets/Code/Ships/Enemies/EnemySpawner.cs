@@ -71,6 +71,7 @@ namespace Ships.Enemies
                                     .WithCheckLimitType(ShipBuilder.CheckLimitTypes.InitialPosition)
                                     .WithConfiguration(shipConfiguration)
                                     .WithTeam(Teams.Enemy)
+                                    .WhithCheckBottomDestroyLimits()
                                     .Build();
             }
         }

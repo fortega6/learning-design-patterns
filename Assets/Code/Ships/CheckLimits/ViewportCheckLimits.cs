@@ -4,7 +4,6 @@ namespace Ships.CheckLimits
 {
     public class ViewportCheckLimits : ICheckLimits
     {
-        private readonly Transform _transform;
         private readonly Camera _camera;
 
         public ViewportCheckLimits(Camera camera)

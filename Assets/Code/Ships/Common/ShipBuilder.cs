@@ -1,4 +1,5 @@
 ﻿using Input;
+using Ships.CheckDestroyLimits;
 using Ships.CheckLimits;
 using Ships.Enemies;
 using System;
@@ -32,10 +33,16 @@ namespace Ships.Common
         private JoyButton _joyButton;
         private CheckLimitTypes _checkLimitsType;
         private Teams _team;
+        private CheckDestroyLimits.CheckDestroyLimits _checkDestroyLimits = new DoNotCheckDestroyLimitsStrategy();
 
         public ShipBuilder FromPrebab(ShipMediator prebab)
         {
             _prefab = prebab;
+            return this;
+        }
+        public ShipBuilder WhithCheckBottomDestroyLimits()
+        {
+            _checkDestroyLimits = new CheckBottomDestroyLimitsStrategy(Camera.main);
             return this;
         }
         public ShipBuilder WithTeam(Teams team)
@@ -95,7 +102,8 @@ namespace Ships.Common
                                                           _shipConfiguration.FireRate,
                                                           _shipConfiguration.DefaultProjectileId,
                                                           _team,
-                                                          _shipConfiguration.Score);
+                                                          _shipConfiguration.Score,
+                                                          _checkDestroyLimits);
             ship.Configure(shipConfiguration);
             return ship;
         }
