@@ -1,18 +1,18 @@
+using System;
 using Battle;
 using Common;
-using System;
+using Ships.Common;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI
 {
-    public class GameOverView : MonoBehaviour, EventObserver
+    public class VictoryView : MonoBehaviour, EventObserver
     {
         [SerializeField] private TextMeshProUGUI _scoreText;
         [SerializeField] private Button _restartButton;
         [SerializeField] private GameFacade _gameFacade;
-
 
         private void Awake()
         {
@@ -22,20 +22,23 @@ namespace UI
         private void Start()
         {
             gameObject.SetActive(false);
-            EventQueue.Instance.Subscribe(EventIds.GameOver, this);
+            EventQueue.Instance.Subscribe(EventIds.Victory, this);
         }
+
         private void OnDestroy()
         {
-            EventQueue.Instance.Unsubscribe(EventIds.GameOver, this);
+            EventQueue.Instance.Unsubscribe(EventIds.Victory, this);
         }
+
         public void Process(EventData eventData)
         {
-            if (eventData.EventId == EventIds.GameOver)
+            if (eventData.EventId == EventIds.Victory)
             {
                 _scoreText.SetText(ScoreView.Instance.CurrentScore.ToString());
                 gameObject.SetActive(true);
             }
         }
+
         private void RestartGame()
         {
             _gameFacade.StartBattle();

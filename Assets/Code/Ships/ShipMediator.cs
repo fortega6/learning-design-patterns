@@ -29,10 +29,12 @@ namespace Ships
         private void Start()
         {
             EventQueue.Instance.Subscribe(EventIds.GameOver, this);
+            EventQueue.Instance.Subscribe(EventIds.Victory, this);
         }
         private void OnDestroy()
         {
             EventQueue.Instance.Unsubscribe(EventIds.GameOver, this);
+            EventQueue.Instance.Unsubscribe(EventIds.Victory, this);
         }
         public void Configure(ShipConfiguration configuration)
         {
@@ -101,7 +103,7 @@ namespace Ships
 
         public void Process(EventData eventData)
         {
-            if (eventData.EventId != EventIds.GameOver)
+            if (eventData.EventId != EventIds.Victory && eventData.EventId != EventIds.GameOver)
             {
                 return;
             }
