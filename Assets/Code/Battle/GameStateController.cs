@@ -1,5 +1,6 @@
 ﻿using Battle.GameStates;
 using Common;
+using Patterns.Decoupling.ServiceLocator;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -17,26 +18,21 @@ namespace Battle
             GameOver,
             Victory
         }
-
-        [SerializeField] private GameFacade _gameFacade;
-
         
         private GameState _currentState;
 
         private Dictionary<GameStates, GameState> _idToState;
 
-        private void Awake()
+        private void Start()
         {
+            var gameFacade = ServiceLocator.Instance.GetService<GameFacade>();
             _idToState = new Dictionary<GameStates, GameState>
                             {
                                 { GameStates.Playing, new PlayingState() },
-                                { GameStates.GameOver, new GameOverState(_gameFacade) },
-                                { GameStates.Victory, new VictoryState(_gameFacade) }
+                                { GameStates.GameOver, new GameOverState(gameFacade) },
+                                { GameStates.Victory, new VictoryState(gameFacade) }
                             };
-        }
 
-        private void Start()
-        {
             _currentState = GetState(GameStates.Playing);
             _currentState.Start(OnStateEnded);
         }

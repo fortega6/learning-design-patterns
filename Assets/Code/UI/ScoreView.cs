@@ -1,4 +1,5 @@
 ﻿using Common;
+using Patterns.Decoupling.ServiceLocator;
 using Ships.Common;
 using System.Collections;
 using UnityEngine;
@@ -7,8 +8,6 @@ namespace UI
 {
     public class ScoreView : MonoBehaviour, EventObserver
     {
-        public static ScoreView Instance { get; private set; }
-
         [SerializeField] private TMPro.TextMeshProUGUI _text;
 
         private int _currentScore;
@@ -22,25 +21,13 @@ namespace UI
                 _text.SetText(_currentScore.ToString());
             }
         }
-
-        private void Awake()
-        {
-            if (Instance != null)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            Instance = this;
-
-        }
         private void Start()
         {
-            EventQueue.Instance.Subscribe(EventIds.ShipDestroyed, this);
+            ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.ShipDestroyed, this);
         }
         private void OnDestroy()
         {
-            EventQueue.Instance.Unsubscribe(EventIds.ShipDestroyed, this);
+            ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.ShipDestroyed, this);
         }
         public void Reset()
         {

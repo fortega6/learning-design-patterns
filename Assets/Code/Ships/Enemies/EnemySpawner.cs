@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Common;
 using Input;
+using Patterns.Decoupling.ServiceLocator;
 using Ships.CheckLimits;
 using Ships.Common;
 using UnityEngine;
@@ -58,7 +59,8 @@ namespace Ships.Enemies
 
             if (_currentConfigurationIndex >= _levelConfiguration.SpawnConfigurations.Length)
             {
-                EventQueue.Instance.EnqueueEvent(new EventData(EventIds.AllShipSpawned));
+                ServiceLocator.Instance.GetService<EventQueue>().
+                    EnqueueEvent(new EventData(EventIds.AllShipSpawned));
             }
         }
 
@@ -78,7 +80,7 @@ namespace Ships.Enemies
                                     .WithTeam(Teams.Enemy)
                                     .WhithCheckBottomDestroyLimits()
                                     .Build();
-                EventQueue.Instance.EnqueueEvent(new EventData(EventIds.ShipSpawned));
+                ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(new EventData(EventIds.ShipSpawned));
             }
         }
     }

@@ -1,5 +1,6 @@
 using Battle;
 using Common;
+using Patterns.Decoupling.ServiceLocator;
 using System;
 using TMPro;
 using UnityEngine;
@@ -11,8 +12,6 @@ namespace UI
     {
         [SerializeField] private TextMeshProUGUI _scoreText;
         [SerializeField] private Button _restartButton;
-        [SerializeField] private GameFacade _gameFacade;
-
 
         private void Awake()
         {
@@ -22,23 +21,23 @@ namespace UI
         private void Start()
         {
             gameObject.SetActive(false);
-            EventQueue.Instance.Subscribe(EventIds.GameOver, this);
+            ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.GameOver, this);
         }
         private void OnDestroy()
         {
-            EventQueue.Instance.Unsubscribe(EventIds.GameOver, this);
+            ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.GameOver, this);
         }
         public void Process(EventData eventData)
         {
             if (eventData.EventId == EventIds.GameOver)
             {
-                _scoreText.SetText(ScoreView.Instance.CurrentScore.ToString());
+                _scoreText.SetText(ServiceLocator.Instance.GetService<ScoreView>().CurrentScore.ToString());
                 gameObject.SetActive(true);
             }
         }
         private void RestartGame()
         {
-            _gameFacade.StartBattle();
+            ServiceLocator.Instance.GetService<GameFacade>().StartBattle();
             gameObject.SetActive(false);
         }
     }
