@@ -1,3 +1,4 @@
+using Common.Commands;
 using Patterns.Decoupling.ServiceLocator;
 using System.Threading.Tasks;
 using UI;
@@ -11,22 +12,7 @@ namespace Core
     {
         protected override async void DoStart()
         {
-            await LoadNextScene();
-        }
-        private async Task LoadNextScene()
-        {
-            await LoadScene("Game");
-            ServiceLocator.Instance.GetService<LoadingScreen>().Hide();
-        }
-        private async Task LoadScene(string sceneName)
-        {
-            var loadSceneAsync = SceneManager.LoadSceneAsync(sceneName);
-
-            while (!loadSceneAsync.isDone)
-            {
-                await Task.Yield();
-            }
-            await Task.Yield();
+            new LoadSceneCommand("Menu").Execute();
         }
         protected override void DoInstallDependencies()
         {
