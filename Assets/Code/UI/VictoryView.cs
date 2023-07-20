@@ -1,6 +1,8 @@
 using System;
 using Battle;
 using Common;
+using Common.Commands;
+using Patterns.Behaviour.Command;
 using Patterns.Decoupling.ServiceLocator;
 using Ships.Common;
 using TMPro;
@@ -13,10 +15,18 @@ namespace UI
     {
         [SerializeField] private TextMeshProUGUI _scoreText;
         [SerializeField] private Button _restartButton;
+        [SerializeField] private Button _backToMenuButton;
 
         private void Awake()
         {
             _restartButton.onClick.AddListener(RestartGame);
+            _backToMenuButton.onClick.AddListener(BackToMenu);
+        }
+
+        private void BackToMenu()
+        {
+            ServiceLocator.Instance.GetService<CommandQueue>()
+                .AddCommand(new LoadSceneCommand("Menu"));
         }
 
         private void Start()

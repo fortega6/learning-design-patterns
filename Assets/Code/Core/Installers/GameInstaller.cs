@@ -25,5 +25,13 @@ namespace Core
             ServiceLocator.Instance.RegisterService(_enemySpawner);
             ServiceLocator.Instance.RegisterService(_gameStateController);
         }
+
+        private void OnDestroy()
+        {
+            ServiceLocator.Instance.UnregisterService<ScoreView>();
+            ServiceLocator.Instance.UnregisterService<ShipInstaller>();
+            ServiceLocator.Instance.UnregisterService<EnemySpawner>();
+            ServiceLocator.Instance.UnregisterService<GameStateController>();
+        }
     }
 }

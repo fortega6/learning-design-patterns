@@ -1,4 +1,5 @@
 using Common.Commands;
+using Patterns.Behaviour.Command;
 using Patterns.Decoupling.ServiceLocator;
 using System.Threading.Tasks;
 using UI;
@@ -12,10 +13,12 @@ namespace Core
     {
         protected override async void DoStart()
         {
-            new LoadSceneCommand("Menu").Execute();
+            ServiceLocator.Instance.GetService<CommandQueue>()
+                .AddCommand(new LoadSceneCommand("Menu"));
         }
         protected override void DoInstallDependencies()
         {
+            ServiceLocator.Instance.RegisterService(CommandQueue.Instance);
         }
     }
 }

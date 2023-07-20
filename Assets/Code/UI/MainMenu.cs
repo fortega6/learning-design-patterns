@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Common.Commands;
+using Patterns.Behaviour.Command;
 using Patterns.Decoupling.ServiceLocator;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,7 +15,13 @@ namespace UI
 
         private void Awake()
         {
-            _startGameButton.onClick.AddListener(new LoadSceneCommand("Game").Execute);
+            _startGameButton.onClick.AddListener(OnStartButtonPressed);
+        }
+
+        private void OnStartButtonPressed()
+        {
+            ServiceLocator.Instance.GetService<CommandQueue>()
+                .AddCommand(new LoadSceneCommand("Game"));
         }
     }
 }

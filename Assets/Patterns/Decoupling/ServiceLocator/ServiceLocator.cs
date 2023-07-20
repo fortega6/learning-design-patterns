@@ -27,7 +27,7 @@ namespace Patterns.Decoupling.ServiceLocator
         public void UnregisterService<T>()
         {
             var type = typeof(T);
-            Assert.IsFalse(_services.ContainsKey(type),
+            Assert.IsTrue(_services.ContainsKey(type),
                            $"Service {type} is not registered");
 
             _services.Remove(type);
