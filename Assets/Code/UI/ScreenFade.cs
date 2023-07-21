@@ -1,10 +1,9 @@
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI
 {
-    public class LoadingScreen : MonoBehaviour
+    public class ScreenFade : MonoBehaviour
     {
         [SerializeField] private Image _screenFadeImage;
 

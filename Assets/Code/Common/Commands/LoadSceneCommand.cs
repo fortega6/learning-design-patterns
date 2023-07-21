@@ -20,6 +20,7 @@ namespace Common.Commands
             var loadingScreen = ServiceLocator.Instance.GetService<LoadingScreen>();
             loadingScreen.Show();
             await LoadScene(_sceneToLoad);
+            await Task.Delay(2000);
             loadingScreen.Hide();
         }
         

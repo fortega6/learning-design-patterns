@@ -21,7 +21,7 @@ namespace UI
         private void OnStartButtonPressed()
         {
             ServiceLocator.Instance.GetService<CommandQueue>()
-                .AddCommand(new LoadSceneCommand("Game"));
+                .AddCommand(new LoadGameScene());
         }
     }
 }
