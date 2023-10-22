@@ -11,49 +11,39 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class VictoryView : MonoBehaviour, EventObserver
+    public class VictoryView : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _scoreText;
         [SerializeField] private Button _restartButton;
         [SerializeField] private Button _backToMenuButton;
+        private InGameMenuMediator _mediator;
 
         private void Awake()
         {
-            _restartButton.onClick.AddListener(RestartGame);
-            _backToMenuButton.onClick.AddListener(BackToMenu);
+            _restartButton.onClick.AddListener(OnRestartPressed);
+            _backToMenuButton.onClick.AddListener(OnBackToMenuPressed);
         }
-
-        private void BackToMenu()
+        public void Configure(InGameMenuMediator mediator)
         {
-            ServiceLocator.Instance.GetService<CommandQueue>()
-                .AddCommand(new LoadSceneCommand("Menu"));
+            _mediator = mediator;
         }
 
-        private void Start()
+        public void Show()
+        {
+            _scoreText.SetText(ServiceLocator.Instance.GetService<ScoreView>().CurrentScore.ToString());
+            gameObject.SetActive(true);
+        }
+        public void Hide()
         {
             gameObject.SetActive(false);
-            ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.Victory, this);
         }
-
-        private void OnDestroy()
+        private void OnBackToMenuPressed()
         {
-            ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.Victory, this);
+            _mediator.OnBackToMenuPressed();
         }
-
-        public void Process(EventData eventData)
+        private void OnRestartPressed()
         {
-            if (eventData.EventId == EventIds.Victory)
-            {
-                _scoreText.SetText(ServiceLocator.Instance.GetService<ScoreView>().CurrentScore.ToString());
-                gameObject.SetActive(true);
-            }
-        }
-
-        private void RestartGame()
-        {
-            ServiceLocator.Instance.GetService<CommandQueue>()
-                .AddCommand(new StartBattleCommand());
-            gameObject.SetActive(false);
+            _mediator.OnRestartPressed();
         }
     }
 }

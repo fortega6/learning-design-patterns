@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 244740554}
   - component: {fileID: 244740553}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PauseText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1303,6 +1303,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pauseButton: {fileID: 277894323}
   _pauseMenuView: {fileID: 307266600}
+  _victoryView: {fileID: 2054762859}
+  _gameOverView: {fileID: 425864454}
 --- !u!1 &394024969
 GameObject:
   m_ObjectHideFlags: 0
