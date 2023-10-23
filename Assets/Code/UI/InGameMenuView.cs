@@ -60,8 +60,7 @@ namespace UI
         {
             HideAllMenus();
             ResumeGame();
-            _commandQueue.AddCommand(new StopBattleCommand());
-            _commandQueue.AddCommand(new StartBattleCommand());
+            _commandQueue.AddCommand(new RestartBattle());
         }
 
         public void OnResumePressed()

@@ -1,6 +1,8 @@
 ﻿using Ships.Common;
+using Ships.Weapons.Projectiles;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -19,10 +21,13 @@ namespace Ships.Weapons
 
         private string _activeProjectileId;
 
+        private List<Projectile> _aliveProjectiles;
+
         private void Awake()
         {
             var instance = Instantiate(_projectilesConfiguration);
             _projectileFactory = new ProjectileFactory(instance);
+            _aliveProjectiles = new List<Projectile>();
         }
 
         public void Configure(Ship ship, float fireRate, ProjectileId defaultProjectileId, Teams team)
@@ -50,7 +55,25 @@ namespace Ships.Weapons
                         _projectileSpawnPosition.position, 
                         _projectileSpawnPosition.rotation,
                         _team);
+            _aliveProjectiles.Add(projectile);
+            projectile.OnDestroy += OnProjectileDestroy;
             _remainingSecondsToBeAbleToShoot = _fireRateInSeconds;
+        }
+
+        private void OnProjectileDestroy(Projectile projectile)
+        {
+            _aliveProjectiles.Remove(projectile);
+            projectile.OnDestroy -= OnProjectileDestroy;
+        }
+
+        public void Restart()
+        {
+            foreach (var aliveProjectile in _aliveProjectiles)
+            {
+                Destroy(aliveProjectile.gameObject);
+            }
+
+            _aliveProjectiles.Clear();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Ships.Common;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ namespace Ships.Weapons.Projectiles
         public Teams Team { get; private set; }
 
         protected Transform MyTransform;
+
+        public Action<Projectile> OnDestroy;
 
         public string Id => _id.Value;
 
@@ -59,6 +62,7 @@ namespace Ships.Weapons.Projectiles
         private void DestroyProjectile()
         {
             DoDestroy();
+            OnDestroy?.Invoke(this);
             Destroy(gameObject);
         }
         protected abstract void DoDestroy();
