@@ -72,7 +72,7 @@ namespace Ships
 
             Destroy(gameObject);
 
-            var shipDestroyedEventData = new ShipDestroyedEvenData(0, _team, GetInstanceID());
+            var shipDestroyedEventData = new ShipDestroyedEventData(0, _team, GetInstanceID());
             ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(shipDestroyedEventData);
         }
         private void TryShoot()
@@ -101,7 +101,7 @@ namespace Ships
             {
                 Destroy(gameObject);
 
-                var shipDestroyedEventData = new ShipDestroyedEvenData(_score, _team, GetInstanceID());
+                var shipDestroyedEventData = new ShipDestroyedEventData(_score, _team, GetInstanceID());
                 ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(shipDestroyedEventData);
             }
         }

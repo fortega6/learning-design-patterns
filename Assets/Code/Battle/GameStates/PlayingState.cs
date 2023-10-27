@@ -31,7 +31,7 @@ namespace Battle.GameStates
             if (eventData.EventId == EventIds.ShipDestroyed)
             {
                 _aliveShips -= 1;
-                var shipDestroyedEventData = (ShipDestroyedEvenData)eventData;
+                var shipDestroyedEventData = (ShipDestroyedEventData)eventData;
                 if (shipDestroyedEventData.Team == Ships.Common.Teams.Ally)
                 {
                     _onEndCallback?.Invoke(GameStateController.GameStates.GameOver);

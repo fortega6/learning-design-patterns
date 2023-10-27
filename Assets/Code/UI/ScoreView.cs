@@ -41,7 +41,7 @@ namespace UI
                 return;
             }
 
-            var shipDestroyedEventData = (ShipDestroyedEvenData)eventData;
+            var shipDestroyedEventData = (ShipDestroyedEventData)eventData;
             AddScore(shipDestroyedEventData.Team, shipDestroyedEventData.ScoreToAdd);
         }
         private void AddScore(Teams killedTeam, int scoreToAdd)
@@ -52,6 +52,7 @@ namespace UI
             }
 
             CurrentScore += scoreToAdd;
+            _text.SetText(CurrentScore.ToString());
         }
     }
 }
