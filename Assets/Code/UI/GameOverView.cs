@@ -7,6 +7,8 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using ScoreSystem = Common.Score.ScoreSystem;
+
 
 namespace UI
 {
@@ -28,7 +30,7 @@ namespace UI
         }
         public void Show()
         {
-            _scoreText.SetText(ServiceLocator.Instance.GetService<ScoreView>().CurrentScore.ToString());
+            _scoreText.SetText(ServiceLocator.Instance.GetService<ScoreSystem>().CurrentScore.ToString());
             gameObject.SetActive(true);
         }
         public void Hide()

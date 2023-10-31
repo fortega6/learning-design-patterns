@@ -1,11 +1,10 @@
 using Common.Commands;
+using Common.Score;
+using Core.DataStorage;
+using Core.Serializers;
 using Patterns.Behaviour.Command;
 using Patterns.Decoupling.ServiceLocator;
-using System.Threading.Tasks;
-using UI;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
+using ScoreSystem = Common.Score.ScoreSystem;
 
 namespace Core
 {
@@ -19,6 +18,11 @@ namespace Core
         protected override void DoInstallDependencies()
         {
             ServiceLocator.Instance.RegisterService(CommandQueue.Instance);
+
+            var serializer = new JsonUtilityAdapter();
+            var dataStore = new PlayerPrefsDataStoreAdapter(serializer);
+            var scoreSystemImpl = new ScoreSystemImpl(dataStore);
+            ServiceLocator.Instance.RegisterService<ScoreSystem>(scoreSystemImpl);
         }
     }
 }
