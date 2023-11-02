@@ -3,7 +3,7 @@ using Patterns.Behaviour.Command;
 
 namespace Common.Commands
 {
-    public class LoadGameScene : Command
+    public class LoadGameSceneCommand : Command
     {
         public async Task Execute()
         {
